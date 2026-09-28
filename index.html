@@ -32,11 +32,12 @@
 <body>
     <h2>Женик TL1000 🦾</h2>
     <div class="balance">💰 Баланс: <span id="bal-val">...</span> Лав-коинов</div>
-    <div class="tabs">
-        <button class="tab-btn active" onclick="switchTab('shop')">🛍️ Магазин</button>
-        <button class="tab-btn" onclick="switchTab('slots')">🎰 Автомат</button>
-        <button class="tab-btn" onclick="switchTab('games')">🪳 Тотализатор</button>
+        <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('shop', this)">🛍️ Магазин</button>
+        <button class="tab-btn" onclick="switchTab('slots', this)">🎰 Автомат</button>
+        <button class="tab-btn" onclick="switchTab('games', this)">🪳 Тотализатор</button>
     </div>
+
     <!-- 1. ПАНЕЛЬ МАГАЗИНА -->
     <div id="shop-panel" class="panel active">
         <h3 style="text-align:left; font-size:14px; margin-left:5px;">Романтика:</h3>
@@ -115,12 +116,13 @@
             tg.CloudStorage.setItem('user_balance', balance.toString());
         }
 
-        function switchTab(tab) {
+        function switchTab(tab, btn) {
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
             document.getElementById(tab + '-panel').classList.add('active');
-            event.currentTarget.classList.add('active');
+            btn.classList.add('active');
         }
+
 
         function buyItem(actionString) {
             const prices = {
